@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class FlyLittleBird : MonoBehaviour
 {
@@ -8,10 +10,31 @@ public class FlyLittleBird : MonoBehaviour
     private bool isMovingRight = true;
     private Rigidbody2D rb;
 
+    public int playerScore = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collidingBox)
+    {
+
+        if (collidingBox.name == "Ground Sprite - FB" ||
+            collidingBox.name == "Left Wall - FB" ||
+            collidingBox.name == "Right Wall - FB")
+        {
+            SceneManager.LoadScene("Main Game Scene");
+        }
+
+        if (collidingBox.name == "PIPES_Easy" ||
+            collidingBox.name == "PIPES_Mid" ||
+            collidingBox.name == "PIPES_Hard")
+        {
+            playerScore += 1;
+        }
     }
 
     // Update is called once per frame
