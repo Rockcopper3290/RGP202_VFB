@@ -5,22 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour
 {
-    //score
-    public int playerScore = 0;
+    public GameObject gameOverCanvas;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        Time.timeScale = 1;
+        gameOverCanvas.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameOver()
     {
-        if (true)
-        {
+        gameOverCanvas.SetActive(true);
+        Time.timeScale = 0;
 
-        }
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene(0);
     }
 }

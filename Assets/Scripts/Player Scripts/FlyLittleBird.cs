@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class FlyLittleBird : MonoBehaviour
 {
+    public Game_Manager gameManager;
     public float velocity = 1.0f;
     private bool isMovingRight = true;
     private Rigidbody2D rb;
@@ -18,7 +19,10 @@ public class FlyLittleBird : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
     private void OnTriggerEnter2D(Collider2D collidingBox)
     {
 
@@ -26,7 +30,7 @@ public class FlyLittleBird : MonoBehaviour
             collidingBox.name == "Left Wall - FB" ||
             collidingBox.name == "Right Wall - FB")
         {
-            SceneManager.LoadScene("Main Game Scene");
+            gameManager.GameOver();
         }
 
         if (collidingBox.name == "PIPES_Easy" ||
